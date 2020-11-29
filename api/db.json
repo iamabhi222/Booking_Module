@@ -1,0 +1,76 @@
+{
+  "Available": [
+    {
+      "name": "Hotel Siddhi Vinayak",
+      "address": "Near NH18, Tapowan Colony, Dhanbad",
+      "rooms": 4,
+      "price": 1299,
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "id": 1
+    },
+    {
+      "name": "Hotel green palace",
+      "address": "Near NH38, Capetown park, Dumka",
+      "rooms": 1,
+      "price": 1449,
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "id": 2
+    },
+    {
+      "name": "Hotel raddison blue",
+      "address": "Cinepolise capital, Dumka",
+      "rooms": 4,
+      "price": 4459,
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "id": 3
+    },
+    {
+      "name": "The glass house",
+      "address": "near honey chock, Dhanbad",
+      "rooms": 3,
+      "price": 1499,
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "id": 4
+    },
+    {
+      "name": "Hotel surya palace",
+      "address": "bakshi bandh road, Dumka",
+      "rooms": 2,
+      "price": 2459,
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "id": 5
+    },
+    {
+      "name": "MS cafe",
+      "address": "PlayHouse capital, Ranchi",
+      "rooms": 2,
+      "price": 3459,
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "id": 6
+    }
+  ],
+  "Booking": [
+    {
+      "userId": "104362184592591454144",
+      "rooms": "1",
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "bookingId": "2",
+      "id": 2
+    },
+    {
+      "userId": "104362184592591454144",
+      "rooms": "1",
+      "from": "2020-11-29",
+      "to": "2020-11-30",
+      "bookingId": "1",
+      "id": 3
+    }
+  ]
+}

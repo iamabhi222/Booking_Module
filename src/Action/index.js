@@ -84,7 +84,7 @@ export const queryRooms = ({ address, from, to, rooms }) => {
 };
 
 export const checkout = (Values) => {
-  return async (dispatch) => {
+  return async () => {
     const { data } = await booking.post("/Booking", { ...Values });
     const result = await booking.get(`/Available/${Values.bookingId}`);
     if (result.data.rooms - data.rooms >= 0) {
@@ -116,6 +116,17 @@ export const UserBooking = (userId) => {
     dispatch({
       type: "CHECKOUT",
       payload: data,
+    });
+  };
+};
+
+export const deleteBooking = (id) => {
+  return async (dispatch) => {
+    await booking.delete(`/Booking/${id}`);
+
+    dispatch({
+      type: "DELETE_BOOKING",
+      payload: id,
     });
   };
 };

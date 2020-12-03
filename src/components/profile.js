@@ -1,5 +1,5 @@
 import React from "react";
-import { UserBooking } from "../Action";
+import { UserBooking, deleteBooking } from "../Action";
 import { connect } from "react-redux";
 
 class Profile extends React.Component {
@@ -48,6 +48,12 @@ class Profile extends React.Component {
             Rooms----
           </p>
           <h5 style={{ display: "contents" }}>{check.rooms}</h5>
+          <button
+            onClick={() => this.props.deleteBooking(check.id)}
+            className="ui button negative"
+          >
+            Delete
+          </button>
         </div>
       );
     });
@@ -74,4 +80,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { UserBooking })(Profile);
+export default connect(mapStateToProps, { UserBooking, deleteBooking })(
+  Profile
+);

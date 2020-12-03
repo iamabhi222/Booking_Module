@@ -44,6 +44,7 @@ const Header = (props) => {
   });
 
   const onClick = () => {
+    //on button click queryRooms and search action creater are called
     props.queryRooms({
       address: text,
       from: fromDate,
@@ -51,6 +52,7 @@ const Header = (props) => {
       rooms: Guests,
     });
     props.search({
+      //used to set the query params
       address: text,
       from: fromDate,
       to: toDate,
@@ -65,10 +67,12 @@ const Header = (props) => {
       <div style={{ marginTop: "10px" }} className="ui centered container grid">
         <div className="four wide column">
           <div className="ui action input">
+            //address input
             <input onChange={(e) => setText(e.target.value)} value={text} />
           </div>
         </div>
         <div className="three wide column">
+          //Booking from date
           <form className={classes.container} noValidate>
             <TextField
               onChange={(e) => setFromDate(e.target.value)}
@@ -88,6 +92,7 @@ const Header = (props) => {
           </form>
         </div>
         <div className="three wide column">
+          //Booking to date
           <form className={classes.container} noValidate>
             <TextField
               onChange={(e) => setToDate(e.target.value)}
@@ -107,6 +112,7 @@ const Header = (props) => {
           </form>
         </div>
         <div className="three wide column">
+          //Number of rooms selected
           <FormControl className={classes.formControl}>
             <InputLabel htmlFor="grouped-native-select">Rooms</InputLabel>
             <Select
@@ -126,6 +132,7 @@ const Header = (props) => {
           </FormControl>
         </div>
         <div className="three wide column">
+          //google sign in button
           <GoogleAuth />
         </div>
         <button onClick={onClick} className="ui button primary">
@@ -134,6 +141,8 @@ const Header = (props) => {
       </div>
 
       <div style={{ marginTop: "30px" }} className="ui container">
+        {" "}
+        //All available hotels
         <Content />
       </div>
     </div>

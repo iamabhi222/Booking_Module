@@ -6,7 +6,7 @@ class Content extends React.Component {
   render() {
     return (
       <div>
-        <Render items={this.props.rooms} />
+        <Render back={this.props.back} items={this.props.rooms} />
       </div>
     );
   }

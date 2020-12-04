@@ -88,7 +88,7 @@ export const checkout = (Values) => {
     const { data } = await booking.post("/Booking", { ...Values });
     const result = await booking.get(`/Available/${Values.bookingId}`);
     if (result.data.rooms - data.rooms >= 0) {
-      const update = await booking.patch(`/Available/${Values.bookingId}`, {
+      await booking.patch(`/Available/${Values.bookingId}`, {
         rooms: result.data.rooms - data.rooms,
       });
       history.push(`/profile/${Values.userId}`);

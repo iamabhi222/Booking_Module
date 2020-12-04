@@ -15,7 +15,7 @@ const App = () => {
         <div>
           <Switch>
             <Route path="/" exact component={Header} />
-            <Route path="/search" exact component={Content} />
+            <Route path="/search" back="yes" exact component={Content} />
             <Route path="/booking/:id" exact component={BookingCheck} />
             <Route path="/profile/:userId" exact component={Profile} />
             <Route path="/error" exact component={Error} />

@@ -6,10 +6,24 @@ class Render extends React.Component {
   renderContent() {
     return this.props.items.map((item) => {
       return (
-        <div className="item" key={item.id}>
-          {this.renderBook(item)}
-          <i className="large middle aligned icon image" />
-          <div className="content">
+        <div
+          style={{
+            height: "300px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+          className="item"
+          key={item.id}
+        >
+          <img
+            alt="rooms"
+            style={{ width: "430px", height: "auto" }}
+            src={item.url}
+          />
+          <div
+            style={{ margin: "auto", lineHeight: "40px" }}
+            className="content"
+          >
             <div className="header">{item.name}</div>
             <div className="description">{item.address}</div>
             <i className="large middle rupee sign icon" />
@@ -17,6 +31,7 @@ class Render extends React.Component {
               {item.price}
             </div>
           </div>
+          {this.renderBook(item)}
         </div>
       );
     });
@@ -25,7 +40,7 @@ class Render extends React.Component {
   renderBook(item) {
     if (this.props.isSignedIn) {
       return (
-        <div className="right floated content">
+        <div style={{ margin: "auto" }} className="right floated content">
           <Link to={`/booking/${item.id}`} className="ui button primary">
             BOOK
           </Link>
@@ -35,7 +50,37 @@ class Render extends React.Component {
   }
 
   render() {
-    return <div className="ui celled list">{this.renderContent()}</div>;
+    if (window.location.pathname === "/search") {
+      return (
+        <div>
+          <Link
+            style={{
+              position: "fixed",
+              top: "20px",
+              left: "20px",
+              color: "black",
+              fontSize: "16px",
+            }}
+            to="/"
+          >
+            <i
+              style={{ color: "black" }}
+              className="angle double left icon big"
+            ></i>
+            Home
+          </Link>
+          <div style={{ marginTop: "25px" }} className="ui celled list">
+            {this.renderContent()}
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div style={{ marginTop: "25px" }} className="ui celled list">
+          {this.renderContent()}
+        </div>
+      );
+    }
   }
 }
 

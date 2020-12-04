@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import GoogleAuth from "./GoogleAuth";
+import { Link } from "react-router-dom";
 import Content from "./Content";
 import { queryRooms, fetchRooms, search } from "../Action";
 import { connect } from "react-redux";
@@ -62,17 +63,81 @@ const Header = (props) => {
 
   const classes = useStyles();
 
+  const user = () => {
+    if (!props.auth.isSignedIn) {
+      return (
+        <div style={{ fontSize: "16px", margin: "5px 0", fontWeight: "600" }}>
+          Login
+        </div>
+      );
+    } else {
+      return (
+        <Link
+          to={`/profile/${props.auth.userId}`}
+          style={{
+            fontSize: "16px",
+            color: "black",
+            margin: "5px 0px",
+            fontWeight: "600",
+          }}
+        >
+          {window.gapi.auth2
+            .getAuthInstance()
+            .currentUser.get()
+            .getBasicProfile()
+            .getName()}
+        </Link>
+      );
+    }
+  };
+
   return (
     <div>
-      <div style={{ marginTop: "10px" }} className="ui centered container grid">
-        <div className="four wide column">
-          <div className="ui action input">
-            //address input
-            <input onChange={(e) => setText(e.target.value)} value={text} />
-          </div>
+      <div
+        style={{
+          display: "flex",
+          position: "fixed",
+          top: "30px",
+          left: "10px",
+        }}
+      >
+        <i className="user circle icon big"></i>
+        <div>{user()}</div>
+      </div>
+      <div
+        style={{ marginTop: "10px", background: "antiquewhite" }}
+        className="ui centered container grid"
+      >
+        <div
+          style={{
+            border: "1px solid black",
+            borderRight: "none",
+            padding: "0",
+          }}
+          className="four wide column"
+        >
+          {/* //address input */}
+          <input
+            style={{
+              width: "280px",
+              height: "68px",
+              padding: "0 20px",
+              fontSize: "18px",
+              border: "none",
+            }}
+            onChange={(e) => setText(e.target.value)}
+            value={text}
+          />
         </div>
-        <div className="three wide column">
-          //Booking from date
+        <div
+          style={{
+            padding: "6px 0",
+            border: "1px solid black",
+            borderRight: "none",
+          }}
+          className="three wide column"
+        >
+          {/* //Booking from date */}
           <form className={classes.container} noValidate>
             <TextField
               onChange={(e) => setFromDate(e.target.value)}
@@ -91,8 +156,16 @@ const Header = (props) => {
             />
           </form>
         </div>
-        <div className="three wide column">
-          //Booking to date
+        <div
+          style={{
+            padding: "6px 0",
+            border: "1px solid black",
+            borderRight: "none",
+            borderLeft: "none",
+          }}
+          className="three wide column"
+        >
+          {/* Booking to date */}
           <form className={classes.container} noValidate>
             <TextField
               onChange={(e) => setToDate(e.target.value)}
@@ -111,9 +184,19 @@ const Header = (props) => {
             />
           </form>
         </div>
-        <div className="three wide column">
-          //Number of rooms selected
-          <FormControl className={classes.formControl}>
+        <div
+          style={{
+            padding: "0px 40px",
+            border: "1px solid black",
+            borderRight: "none",
+          }}
+          className="three wide column"
+        >
+          {/* //Number of rooms selected */}
+          <FormControl
+            style={{ margin: "6px" }}
+            className={classes.formControl}
+          >
             <InputLabel htmlFor="grouped-native-select">Rooms</InputLabel>
             <Select
               onChange={(e) => setGuests(e.target.value)}
@@ -131,22 +214,43 @@ const Header = (props) => {
             </Select>
           </FormControl>
         </div>
-        <div className="three wide column">
-          //google sign in button
+        <div
+          style={{ position: "fixed", right: "-135px" }}
+          className="three wide column"
+        >
+          {/* //google sign in button */}
           <GoogleAuth />
         </div>
-        <button onClick={onClick} className="ui button primary">
+        <button
+          style={{
+            padding: "0px",
+            height: "70px",
+            margin: "0",
+            width: "211px",
+            borderRadius: "0",
+          }}
+          onClick={onClick}
+          className="ui button primary"
+        >
           Submit
         </button>
       </div>
 
       <div style={{ marginTop: "30px" }} className="ui container">
         {" "}
-        //All available hotels
+        {/* //All available hotels */}
         <Content />
       </div>
     </div>
   );
 };
 
-export default connect(null, { queryRooms, fetchRooms, search })(Header);
+const mapStateToProps = (state) => {
+  return {
+    auth: state.auth,
+  };
+};
+
+export default connect(mapStateToProps, { queryRooms, fetchRooms, search })(
+  Header
+);

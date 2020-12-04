@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { fetchRoom, queryRooms, checkout } from "../Action";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -50,11 +50,57 @@ const BookingCheck = (props) => {
   };
   return (
     <div>
-      <h1>{props.room.name}</h1>
-      <h4>{props.room.address}</h4>
-      <i className="large middle rupee sign icon" />
-      <h5 style={{ display: "contents" }}>{props.room.price}</h5>
-      <div className="">
+      <Link
+        style={{
+          position: "fixed",
+          top: "20px",
+          left: "20px",
+          color: "black",
+          fontSize: "16px",
+        }}
+        to="/"
+      >
+        <i
+          style={{ color: "black" }}
+          className="angle double left icon big"
+        ></i>
+        Home
+      </Link>
+      <div
+        style={{
+          marginTop: "50px",
+          height: "300px",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+        className="item"
+      >
+        <img
+          alt="rooms"
+          style={{ width: "430px", height: "auto" }}
+          src={props.room.url}
+        />
+        <div style={{ margin: "auto", lineHeight: "40px" }} className="content">
+          <div
+            style={{ fontSize: "20px", fontWeight: "600" }}
+            className="header"
+          >
+            {props.room.name}
+          </div>
+          <div className="description">{props.room.address}</div>
+          <i className="large middle rupee sign icon" />
+          <div style={{ display: "contents" }} className="description">
+            {props.room.price}
+          </div>
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "40px",
+        }}
+      >
         <form className={classes.container} noValidate>
           <TextField
             disabled={true}
@@ -68,8 +114,7 @@ const BookingCheck = (props) => {
             }}
           />
         </form>
-      </div>
-      <div className="">
+
         <form className={classes.container} noValidate>
           <TextField
             disabled={true}
@@ -83,9 +128,8 @@ const BookingCheck = (props) => {
             }}
           />
         </form>
-      </div>
-      <div className="">
-        <FormControl className={classes.formControl}>
+
+        <FormControl style={{ margin: "0" }} className={classes.formControl}>
           <InputLabel htmlFor="grouped-native-select">
             {props.query.query.rooms}
           </InputLabel>
@@ -96,11 +140,12 @@ const BookingCheck = (props) => {
             disabled={true}
           ></Select>
         </FormControl>
-      </div>
-      <div style={{ textAlign: "right" }}>
-        <button className="ui button primary" onClick={onClick}>
-          Checkout
-        </button>
+
+        <div style={{ textAlign: "right" }}>
+          <button className="ui button primary" onClick={onClick}>
+            Checkout
+          </button>
+        </div>
       </div>
     </div>
   );

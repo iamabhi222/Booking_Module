@@ -19,7 +19,13 @@ class Profile extends React.Component {
 
       return (
         <div key={check._id}>
-          <div style={{ padding: "20px", fontSize: "20px" }}>
+          <div
+            style={{
+              padding: "20px",
+              fontSize: "20px",
+              fontFamily: "'Rubik', sans-serif",
+            }}
+          >
             {this.props.rooms[check.bookingId].name}
           </div>
           <div
@@ -28,6 +34,7 @@ class Profile extends React.Component {
               display: "flex",
               justifyContent: "space-between",
               borderBottom: "1px solid black",
+              fontFamily: "'Jura', sans-serif",
             }}
             className="item"
           >
@@ -97,28 +104,46 @@ class Profile extends React.Component {
       );
     }
     return (
-      <div>
+      <div className="profile">
         <div>
           <Link
             style={{
-              position: "fixed",
+              position: "absolute",
               top: "20px",
               left: "20px",
               color: "black",
               fontSize: "16px",
+              fontFamily: "'Josefin Sans', sans-serif",
+              fontWeight: "600",
             }}
             to="/"
           >
             <i style={{ color: "black" }} className="home icon big"></i>Home
           </Link>
         </div>
-        <div style={{ display: "flex", marginBottom: "70px" }}>
+        <div
+          style={{
+            display: "flex",
+            marginBottom: "70px",
+            color: "white",
+          }}
+        >
           <img
             style={{ margin: "10px 0 0" }}
             alt="profilePic"
             src={this.image}
           />
-          <h3 style={{ padding: "25px 50px" }}>{this.name}</h3>
+          <h3
+            style={{
+              padding: "25px 50px",
+              color: "black",
+              fontSize: "22px",
+              fontWeight: "100",
+              fontFamily: "'Rubik', sans-serif",
+            }}
+          >
+            {this.name}
+          </h3>
         </div>
 
         <div className="ui celled list">{this.renderList()}</div>

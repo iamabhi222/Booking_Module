@@ -43,25 +43,14 @@ export const queryRooms = ({ address, from, to, rooms }) => {
       `/Available?address_like=${address}&rooms_gte=${rooms}`
     );
 
+    if (data.error) {
+      return history.push("/error");
+    }
+
     const result = data.filter((filter) => {
       if (
-        moment(from).isBetween(filter.from, filter.to) &&
-        moment(to).isBetween(filter.from, filter.to)
-      ) {
-        return true;
-      } else if (
-        moment(from).isSame(filter.from) &&
-        moment(to).isBetween(filter.from, filter.to)
-      ) {
-        return true;
-      } else if (
-        moment(from).isBetween(filter.from, filter.to) &&
-        moment(to).isSame(filter.to)
-      ) {
-        return true;
-      } else if (
-        moment(from).isSame(filter.from) &&
-        moment(to).isSame(filter.to)
+        moment(from).isBetween(filter.from, filter.to, null, []) &&
+        moment(to).isBetween(filter.from, filter.to, null, [])
       ) {
         return true;
       } else return false;
@@ -79,7 +68,16 @@ export const queryRooms = ({ address, from, to, rooms }) => {
 export const checkout = (Values) => {
   return async () => {
     const result = await booking.get(`/Available/${Values.bookingId}`);
-    if (result.data.rooms - Values.rooms >= 0) {
+    if (
+      result.data.rooms - Values.rooms >= 0 &&
+      moment(Values.from).isBetween(
+        result.data.from,
+        result.data.to,
+        null,
+        []
+      ) &&
+      moment(Values.to).isBetween(result.data.from, result.data.to, null, [])
+    ) {
       const { data } = await booking.post("/Booking", { ...Values });
       await booking.patch(`/Available/${Values.bookingId}`, {
         rooms: result.data.rooms - data.rooms,

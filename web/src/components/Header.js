@@ -69,7 +69,7 @@ const Header = (props) => {
       return (
         <div
           style={{
-            color: "yellowgreen",
+            color: "white",
             fontSize: "16px",
             margin: "5px 0",
             fontWeight: "100",
@@ -83,7 +83,7 @@ const Header = (props) => {
         <Link
           to={`/profile/${props.auth.userId}`}
           style={{
-            color: "yellowgreen",
+            color: "white",
             fontSize: "16px",
             margin: "5px 0px",
             fontWeight: "100",
@@ -104,9 +104,9 @@ const Header = (props) => {
       <div
         style={{
           display: "flex",
-          position: "fixed",
+          position: "absolute",
           top: "30px",
-          color: "yellowgreen",
+          color: "white",
           left: "10px",
         }}
       >
@@ -193,7 +193,10 @@ const Header = (props) => {
                 shrink: true,
               }}
               inputProps={{
-                min: toDate,
+                min: moment(fromDate)
+                  .add(1, "day")
+                  .endOf("day")
+                  .format("YYYY-MM-DD"),
                 max: moment().add(10, "day").endOf("day").format("YYYY-MM-DD"),
               }}
             />
@@ -230,7 +233,7 @@ const Header = (props) => {
           </FormControl>
         </div>
         <div
-          style={{ position: "fixed", right: "-135px" }}
+          style={{ position: "absolute", right: "-135px" }}
           className="three wide column"
         >
           {/* //google sign in button */}

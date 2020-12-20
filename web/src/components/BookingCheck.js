@@ -60,6 +60,8 @@ const BookingCheck = (props) => {
           left: "20px",
           color: "black",
           fontSize: "16px",
+          fontFamily: "'Josefin Sans', sans-serif",
+          fontWeight: "600",
         }}
         to="/"
       >
@@ -85,12 +87,17 @@ const BookingCheck = (props) => {
         />
         <div style={{ margin: "auto", lineHeight: "40px" }} className="content">
           <div
-            style={{ fontSize: "20px", fontWeight: "600" }}
+            style={{ fontSize: "20px", fontFamily: "'Rubik', sans-serif" }}
             className="header"
           >
             {props.room.name}
           </div>
-          <div className="description">{props.room.address}</div>
+          <div
+            className="description"
+            style={{ fontFamily: "'Jura', sans-serif" }}
+          >
+            {props.room.address}
+          </div>
           <i className="large middle rupee sign icon" />
           <div style={{ display: "contents" }} className="description">
             {props.room.price}

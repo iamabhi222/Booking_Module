@@ -17,6 +17,10 @@ router.get("/Available", async (req, res) => {
   match = {};
   if (req.query.address_like) {
     const loc = await geocoder.geocode(req.query.address_like);
+    if (loc.length === 0) {
+      return res.send({ error: "Please provide a valid address" });
+    }
+    // console.log(loc);
     // console.log(loc[0].latitude);
     // console.log(loc[0].longitude);
     match.location = {
